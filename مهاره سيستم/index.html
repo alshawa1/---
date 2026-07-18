@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>مهاره سيستم — لوحة التحكم</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css"/>
+</head>
+<body>
+
+  <div class="bg-grid"></div>
+  <div class="bg-orbs">
+    <div class="orb orb-1"></div>
+    <div class="orb orb-2"></div>
+    <div class="orb orb-3"></div>
+  </div>
+
+  <div class="wrapper">
+    <header class="header">
+      <div class="header-logo">
+        <div class="logo-icon">
+          <svg viewBox="0 0 40 40" fill="none">
+            <rect width="40" height="40" rx="12" fill="url(#lg)"/>
+            <path d="M10 28L16 20L22 24L28 14" stroke="white" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+            <circle cx="28" cy="14" r="2.5" fill="white"/>
+            <defs><linearGradient id="lg" x1="0" y1="0" x2="40" y2="40">
+              <stop offset="0%" stop-color="#6366f1"/>
+              <stop offset="100%" stop-color="#8b5cf6"/>
+            </linearGradient></defs>
+          </svg>
+        </div>
+        <div class="logo-text">
+          <span class="logo-title">مهاره سيستم</span>
+          <span class="logo-sub">نظام إدارة المحافظ الرقمي</span>
+        </div>
+      </div>
+      <div class="header-date" id="headerDate"></div>
+    </header>
+
+    <div class="hero">
+      <h1 class="hero-title">لوحة الأنظمة الذكية</h1>
+      <p class="hero-sub">قم باختيار أحد الأنظمة لرفع ملفات المحفظة وبدء المعالجة الفورية</p>
+    </div>
+
+    <div class="cards-grid">
+      <!-- Card 1 -->
+      <div class="card card-neglect" onclick="launchProgram('neglect')">
+        <div class="card-glow"></div>
+        <div class="card-inner">
+          <div class="card-icon">
+            <svg viewBox="0 0 48 48" fill="none">
+              <circle cx="24" cy="24" r="20" fill="rgba(251,146,60,0.15)" stroke="rgba(251,146,60,0.4)" stroke-width="1.5"/>
+              <path d="M24 14v12" stroke="#fb923c" stroke-width="2.5" stroke-linecap="round"/>
+              <circle cx="24" cy="32" r="2" fill="#fb923c"/>
+            </svg>
+          </div>
+          <div class="card-content">
+            <h2 class="card-title">الإهمال</h2>
+            <p class="card-desc">تحليل حالات الإهمال وتصنيف العملاء بناءً على أيام المتابعة</p>
+            <div class="card-tags"><span class="tag">ملف المحفظة</span></div>
+          </div>
+          <div class="card-arrow">
+            <svg viewBox="0 0 24 24" fill="none"><path d="M5 12h14M12 5l7 7-7 7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </div>
+        </div>
+        <div class="card-num">01</div>
+      </div>
+
+      <!-- Card 2 -->
+      <div class="card card-errors" onclick="launchProgram('errors')">
+        <div class="card-glow"></div>
+        <div class="card-inner">
+          <div class="card-icon">
+            <svg viewBox="0 0 48 48" fill="none">
+              <circle cx="24" cy="24" r="20" fill="rgba(239,68,68,0.15)" stroke="rgba(239,68,68,0.4)" stroke-width="1.5"/>
+              <path d="M24 16l8 16H16l8-16z" stroke="#ef4444" stroke-width="2" stroke-linejoin="round" fill="rgba(239,68,68,0.1)"/>
+              <path d="M24 22v4" stroke="#ef4444" stroke-width="2" stroke-linecap="round"/>
+              <circle cx="24" cy="29" r="1.2" fill="#ef4444"/>
+            </svg>
+          </div>
+          <div class="card-content">
+            <h2 class="card-title">أخطاء النظام</h2>
+            <p class="card-desc">كشف وتصحيح الأخطاء في بيانات المحفظة وتوثيق السداد</p>
+            <div class="card-tags"><span class="tag">ملف المحفظة</span><span class="tag">وعود السداد</span></div>
+          </div>
+          <div class="card-arrow">
+            <svg viewBox="0 0 24 24" fill="none"><path d="M5 12h14M12 5l7 7-7 7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </div>
+        </div>
+        <div class="card-num">02</div>
+      </div>
+
+      <!-- Card 3 -->
+      <div class="card card-targets" onclick="launchProgram('targets')">
+        <div class="card-glow"></div>
+        <div class="card-inner">
+          <div class="card-icon">
+            <svg viewBox="0 0 48 48" fill="none">
+              <circle cx="24" cy="24" r="20" fill="rgba(34,197,94,0.15)" stroke="rgba(34,197,94,0.4)" stroke-width="1.5"/>
+              <circle cx="24" cy="24" r="10" stroke="#22c55e" stroke-width="1.5" stroke-dasharray="3 2"/>
+              <circle cx="24" cy="24" r="4" fill="rgba(34,197,94,0.3)" stroke="#22c55e" stroke-width="2"/>
+            </svg>
+          </div>
+          <div class="card-content">
+            <h2 class="card-title">عملاء مستهدفة</h2>
+            <p class="card-desc">تحديد العملاء ذوي الأولوية وتحليل المديونيات المستهدفة</p>
+            <div class="card-tags"><span class="tag">ملف المحفظة</span><span class="tag">وعود السداد</span><span class="tag">سداد مهاره</span></div>
+          </div>
+          <div class="card-arrow">
+            <svg viewBox="0 0 24 24" fill="none"><path d="M5 12h14M12 5l7 7-7 7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </div>
+        </div>
+        <div class="card-num">03</div>
+      </div>
+
+      <!-- Card 4 -->
+      <div class="card card-contact" onclick="launchProgram('contact')">
+        <div class="card-glow"></div>
+        <div class="card-inner">
+          <div class="card-icon">
+            <svg viewBox="0 0 48 48" fill="none">
+              <circle cx="24" cy="24" r="20" fill="rgba(99,102,241,0.15)" stroke="rgba(99,102,241,0.4)" stroke-width="1.5"/>
+              <path d="M16 20c0-4.4 3.6-8 8-8s8 3.6 8 8c0 6-8 14-8 14s-8-8-8-14z" stroke="#6366f1" stroke-width="2" fill="rgba(99,102,241,0.1)"/>
+              <circle cx="24" cy="20" r="3" fill="#6366f1"/>
+            </svg>
+          </div>
+          <div class="card-content">
+            <h2 class="card-title">توصل وعدم توصل</h2>
+            <p class="card-desc">تصنيف العملاء حسب حالة التواصل وتتبع محاولات الاتصال</p>
+            <div class="card-tags"><span class="tag">ملف المحفظة</span></div>
+          </div>
+          <div class="card-arrow">
+            <svg viewBox="0 0 24 24" fill="none"><path d="M5 12h14M12 5l7 7-7 7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </div>
+        </div>
+        <div class="card-num">04</div>
+      </div>
+
+      <!-- Card 5 -->
+      <div class="card card-rotation" onclick="launchProgram('rotation')">
+        <div class="card-glow"></div>
+        <div class="card-inner">
+          <div class="card-icon">
+            <svg viewBox="0 0 48 48" fill="none">
+              <circle cx="24" cy="24" r="20" fill="rgba(230,126,34,0.15)" stroke="rgba(230,126,34,0.4)" stroke-width="1.5"/>
+              <path d="M24 12v6m0 12v6M12 24h6m12 0h6" stroke="#e67e22" stroke-width="2.5" stroke-linecap="round"/>
+              <path d="M18 18l12 12m-12 0l12-12" stroke="#e67e22" stroke-width="2" stroke-linecap="round"/>
+            </svg>
+          </div>
+          <div class="card-content">
+            <h2 class="card-title">السحب والتدوير</h2>
+            <p class="card-desc">سحب جميع عملاء محصل وإعادة توزيعهم على محصلي المشرف بالتساوي</p>
+            <div class="card-tags"><span class="tag">ملف المحفظة</span></div>
+          </div>
+          <div class="card-arrow">
+            <svg viewBox="0 0 24 24" fill="none"><path d="M5 12h14M12 5l7 7-7 7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </div>
+        </div>
+        <div class="card-num">05</div>
+      </div>
+
+      <!-- Card 6 -->
+      <div class="card card-balancing" onclick="launchProgram('balancing')">
+        <div class="card-glow"></div>
+        <div class="card-inner">
+          <div class="card-icon">
+            <svg viewBox="0 0 48 48" fill="none">
+              <circle cx="24" cy="24" r="20" fill="rgba(139,92,246,0.15)" stroke="rgba(139,92,246,0.4)" stroke-width="1.5"/>
+              <!-- ميزان -->
+              <path d="M24 14v20" stroke="#8b5cf6" stroke-width="2" stroke-linecap="round"/>
+              <path d="M18 34h12" stroke="#8b5cf6" stroke-width="2" stroke-linecap="round"/>
+              <path d="M12 18h24" stroke="#8b5cf6" stroke-width="1.5" stroke-linecap="round"/>
+              <circle cx="12" cy="22" r="4" fill="rgba(139,92,246,0.2)" stroke="#8b5cf6" stroke-width="1.5"/>
+              <circle cx="36" cy="22" r="4" fill="rgba(139,92,246,0.2)" stroke="#8b5cf6" stroke-width="1.5"/>
+              <path d="M12 18l-2 4M36 18l2 4" stroke="#8b5cf6" stroke-width="1.5" stroke-linecap="round"/>
+            </svg>
+          </div>
+          <div class="card-content">
+            <h2 class="card-title">سحب وتوزيع المحافظ</h2>
+            <p class="card-desc">إعادة توزيع عملاء محافظ مصدر بتوازن ذكي على محصلي محافظ هدف بالتساوي</p>
+            <div class="card-tags"><span class="tag">ملف المحفظة</span></div>
+          </div>
+          <div class="card-arrow">
+            <svg viewBox="0 0 24 24" fill="none"><path d="M5 12h14M12 5l7 7-7 7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </div>
+        </div>
+        <div class="card-num">06</div>
+      </div>
+    </div>
+
+    <footer class="footer">مهاره سيستم &copy; 2026 — جميع الحقوق محفوظة</footer>
+  </div>
+
+  <!-- Upload Modal -->
+  <div class="modal-overlay" id="modalOverlay" onclick="closeModal()">
+    <div class="modal" onclick="event.stopPropagation()">
+      <div class="modal-icon" id="modalIcon"></div>
+      <h3 class="modal-title" id="modalTitle"></h3>
+      <p class="modal-hint">اختر الملفات المطلوبة للتحليل</p>
+      <div id="modalFilesZone" class="files-zone"></div>
+      
+      <!-- Rotation Options -->
+      <div id="rotationOptionsContainer" class="rotation-options" style="display:none; margin-top: 15px; text-align: right; width: 100%;">
+        <div class="form-group" style="margin-bottom: 12px;">
+          <label style="display:block; margin-bottom: 5px; color: #f0f6fc; font-size: 14px;">1. اختر اسم المشرف:</label>
+          <select id="rotationSupervisor" onchange="onRotationSupervisorChanged()" style="width:100%; padding: 8px; background: #21262d; border: 1px solid #30363d; color: #f0f6fc; border-radius: 6px; font-family: Cairo;"></select>
+        </div>
+        <div class="form-group" style="margin-bottom: 12px;">
+          <label style="display:block; margin-bottom: 5px; color: #f0f6fc; font-size: 14px;">2. اسم المحصل المسحوب:</label>
+          <select id="rotationCollector" onchange="onRotationCollectorChanged()" style="width:100%; padding: 8px; background: #21262d; border: 1px solid #30363d; color: #f0f6fc; border-radius: 6px; font-family: Cairo;" disabled></select>
+        </div>
+        <div id="rotationPreview" style="font-size: 12px; margin-top: 8px; direction: rtl; color: #8b949e; line-height: 1.6;"></div>
+      </div>
+
+      <!-- Balancing Options -->
+      <div id="balancingOptionsContainer" style="display:none; margin-top: 15px; text-align: right; width: 100%;">
+        <div style="display:grid; grid-template-columns:1fr 1fr; gap:14px; margin-bottom:10px;">
+          <div>
+            <label style="display:block; margin-bottom:6px; color:#f0f6fc; font-size:13px; font-weight:600;">📤 المحافظ المصدر (السحب منها):</label>
+            <select id="balSourceList" multiple size="5" onchange="onBalancingChanged()"
+              style="width:100%; padding:6px; background:#1a1f27; border:2px solid #8b5cf6; color:#f0f6fc; border-radius:8px; font-family:Cairo; font-size:12px; outline:none;"></select>
+            <small style="color:#6e7681; display:block; margin-top:4px;">Ctrl + اضغط لاختيار أكثر من محفظة</small>
+          </div>
+          <div>
+            <label style="display:block; margin-bottom:6px; color:#f0f6fc; font-size:13px; font-weight:600;">📥 المحافظ الهدف (التوزيع عليها):</label>
+            <select id="balTargetList" multiple size="5" onchange="onBalancingChanged()"
+              style="width:100%; padding:6px; background:#1a1f27; border:2px solid #22c55e; color:#f0f6fc; border-radius:8px; font-family:Cairo; font-size:12px; outline:none;"></select>
+            <small style="color:#6e7681; display:block; margin-top:4px;">Ctrl + اضغط لاختيار أكثر من محفظة</small>
+          </div>
+        </div>
+        <div id="balancingPreview" style="font-size:12px; margin-top:8px; direction:rtl; color:#8b949e; line-height:1.7; padding:8px; background:#161b22; border-radius:6px; min-height:36px;"></div>
+      </div>
+
+      <div class="modal-buttons">
+        <button class="btn btn-primary" id="modalRunBtn" onclick="runProgram()">
+          <svg viewBox="0 0 20 20" fill="none" width="16" height="16"><path d="M6 4l12 6-12 6V4z" fill="currentColor"/></svg>
+          بدء المعالجة
+        </button>
+        <button class="btn btn-secondary" onclick="closeModal()">إلغاء</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Progress Modal -->
+  <div class="modal-overlay" id="progressOverlay">
+    <div class="modal modal-progress">
+      <div style="font-size:48px;margin-bottom:16px">⚙️</div>
+      <h3 class="modal-title" id="progressTitle">جاري المعالجة...</h3>
+      <p class="modal-hint">يرجى الانتظار أثناء تشغيل محرك Polars السريع</p>
+      <div class="progress-track"><div class="progress-fill" id="progressBar"></div></div>
+    </div>
+  </div>
+
+  <!-- Results Modal -->
+  <div class="modal-overlay" id="resultOverlay" onclick="closeResultOverlay()">
+    <div class="modal modal-result" onclick="event.stopPropagation()">
+      <div class="modal-icon" id="resultIcon"></div>
+      <h3 class="modal-title" id="resultTitle">اكتملت المعالجة بنجاح!</h3>
+      <div class="stats-box" id="resultStats"></div>
+      <div class="result-file">
+        <svg viewBox="0 0 24 24" fill="none" width="18" height="18"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8l-6-6z" stroke="#22c55e" stroke-width="1.5"/><polyline points="14 2 14 8 20 8" stroke="#22c55e" stroke-width="1.5"/></svg>
+        <span id="resultFilename"></span>
+      </div>
+      <div class="modal-buttons">
+        <button class="btn btn-success" id="resultDownloadBtn">تحميل النتيجة (Excel)</button>
+        <button class="btn btn-secondary" onclick="closeResultOverlay()">إغلاق</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Error Modal -->
+  <div class="modal-overlay" id="errorOverlay" onclick="closeErrorOverlay()">
+    <div class="modal" onclick="event.stopPropagation()">
+      <div style="font-size:48px;margin-bottom:12px">❌</div>
+      <h3 class="modal-title">خطأ أثناء التشغيل</h3>
+      <p class="modal-hint" id="errorMsg" style="color:#f87171"></p>
+      <button class="btn btn-secondary" onclick="closeErrorOverlay()">إغلاق</button>
+    </div>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>
