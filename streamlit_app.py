@@ -17,7 +17,7 @@ from export.excel_writer_xl import ExcelReportWriter
 
 # ─── إعدادات الصفحة والتصميم ───
 st.set_page_config(
-    page_title="مهارة سيستم - لوحة العمليات الذكية",
+    page_title="موهبة سيستم - لوحة العمليات الذكية",
     page_icon="🏢",
     layout="wide",
     initial_sidebar_state="expanded"
@@ -257,7 +257,7 @@ if selected_key == "rotation" and uploaded_files.get("portfolio"):
                     selected_col = None
             
             # معاينة النتيجة
-            if selected_sup and selected_sup != "-- اختر Supervisor --" and selected_col and selected_col != "-- اختر المحصل --":
+            if selected_sup and selected_sup != "-- اختر المشرف --" and selected_col and selected_col != "-- اختر المحصل --":
                 pool = [c for c in mapping[selected_sup] if c != selected_col]
                 if len(pool) == 0:
                     st.error(f"⚠️ لا يوجد محصلون آخرون تحت إشراف '{selected_sup}' لتوزيع المحفظة عليهم!")
@@ -478,62 +478,40 @@ if st.button("🚀 تشغيل التحليل والمعالجة", disabled=not r
             with stats_cols[col_idx]:
                 st.metric(label=k, value=str(v))
         
-        # عرض جدول التوازن النهائي للمحصلين
-        # عرض جدول ملخص التوزيع للمهمة رقم 8 فقط
+        # عرض جدول التوازن النهائي للمحصلين (تم تعديل أسماء الأعمدة لتطابق المخرجات الفعلية)
         if task_id == 8 and 'r' in locals() and "summary_pivot" in r:
             st.markdown("---")
             st.markdown("#### 📋 جدول ملخص التوزيع النهائي للمحصلين")
-            
-            # اختيار الأعمدة المطلوبة من جدول Polars
-            show_df = r["summary_pivot"].select(["المحصل الجديد", "اليوزر", "عدد العملاء", "إجمالي متبقي السداد"])
-            
-            # استبعاد صفوف المؤشرات الإحصائية من العرض المباشر (مثل الانحراف المعياري) لإبقاء الجدول نظيفاً
-            # تم إضافة .fill_null(False) لضمان عدم حدوث خطأ إذا كانت هناك قيم فارغة
-            show_df = show_df.filter(~pl.col("المحصل الجديد").str.contains("📉|📈").fill_null(False))
-            
-            st.dataframe(show_df.to_pandas(), use_container_width=True, hide_index=True)
-      # عرض جدول ملخص التوزيع للمهمة رقم 8 فقط
-        if task_id == 8 and 'r' in locals() and "summary_pivot" in r:
-            st.markdown("---")
-            st.markdown("#### 📋 جدول ملخص التوزيع النهائي للمحصلين")
-            
-            # تم تعديل أسماء الأعمدة لتطابق المتاحة في الجدول (المحصل و عدد العملاء بعد)
             show_df = r["summary_pivot"].select(["المحصل", "اليوزر", "عدد العملاء بعد", "إجمالي متبقي السداد"])
             
-            # استبعاد صفوف المؤشرات الإحصائية باستخدام اسم العمود الصحيح "المحصل"
+            # استبعاد صفوف المؤشرات الإحصائية من العرض المباشر بأمان وحمايتها من الـ Nulls
             show_df = show_df.filter(~pl.col("المحصل").str.contains("📉|📈").fill_null(False))
-            
             st.dataframe(show_df.to_pandas(), use_container_width=True, hide_index=True)
         
-        # 4. زر تحميل التقرير (مع التأكد أولاً من أن الملف تم إنشاؤه بنجاح)
-        if os.path.exists(out_path):
-            with open(out_path, "rb") as f_out:
-                excel_bytes = f_out.read()
-                
-            ts_str = datetime.now().strftime("%Y%m%d_%H%M%S")
-            download_name = f"مهاره_{selected_key}_{ts_str}.xlsx"
+        # 4. زر تحميل التقرير
+        with open(out_path, "rb") as f_out:
+            excel_bytes = f_out.read()
             
-            st.markdown("---")
-            st.download_button(
-                label="📥 تحميل التقرير النهائي (Excel Mapped & Styled)",
-                data=excel_bytes,
-                file_name=download_name,
-                mime="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
-                use_container_width=True
-            )
-        else:
-            st.error("❌ لم يتم العثور على ملف التقرير النهائي، يرجى التأكد من اكتمال العمليات بنجاح.")
+        ts_str = datetime.now().strftime("%Y%m%d_%H%M%S")
+        download_name = f"مهاره_{selected_key}_{ts_str}.xlsx"
+        
+        st.markdown("---")
+        st.download_button(
+            label="📥 تحميل التقرير النهائي (Excel Mapped & Styled)",
+            data=excel_bytes,
+            file_name=download_name,
+            mime="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
+            use_container_width=True
+        )
         
     except Exception as e:
         st.exception(e)
         st.error(f"❌ حدث خطأ أثناء تشغيل النظام: {e}")
         
     finally:
-        # تنظيف الملفات المؤقتة بأمان
-        if 'temp_files' in locals():
-            for p in temp_files:
-                try:
-                    if os.path.exists(p):
-                        os.unlink(p)
-                except:
-                    pass
+        # تنظيف الملفات المؤقتة
+        for p in temp_files:
+            try:
+                os.unlink(p)
+            except:
+                pass
