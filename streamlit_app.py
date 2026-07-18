@@ -492,6 +492,18 @@ if st.button("🚀 تشغيل التحليل والمعالجة", disabled=not r
             show_df = show_df.filter(~pl.col("المحصل الجديد").str.contains("📉|📈").fill_null(False))
             
             st.dataframe(show_df.to_pandas(), use_container_width=True, hide_index=True)
+      # عرض جدول ملخص التوزيع للمهمة رقم 8 فقط
+        if task_id == 8 and 'r' in locals() and "summary_pivot" in r:
+            st.markdown("---")
+            st.markdown("#### 📋 جدول ملخص التوزيع النهائي للمحصلين")
+            
+            # تم تعديل أسماء الأعمدة لتطابق المتاحة في الجدول (المحصل و عدد العملاء بعد)
+            show_df = r["summary_pivot"].select(["المحصل", "اليوزر", "عدد العملاء بعد", "إجمالي متبقي السداد"])
+            
+            # استبعاد صفوف المؤشرات الإحصائية باستخدام اسم العمود الصحيح "المحصل"
+            show_df = show_df.filter(~pl.col("المحصل").str.contains("📉|📈").fill_null(False))
+            
+            st.dataframe(show_df.to_pandas(), use_container_width=True, hide_index=True)
         
         # 4. زر تحميل التقرير (مع التأكد أولاً من أن الملف تم إنشاؤه بنجاح)
         if os.path.exists(out_path):
